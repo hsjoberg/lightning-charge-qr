@@ -1,0 +1,27 @@
+{
+  "name": "lightning-charge-qr",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app",
+    "build-assets": "cd vendor/bootstrap-4.0.0 && npm run dist",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Hampus Sjöberg",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.2",
+    "express-session": "^1.15.6",
+    "lightning-charge": "^0.3.5",
+    "lightning-charge-client": "^0.1.4",
+    "pug": "^2.0.0-rc.4",
+    "qr": "^0.2.4",
+    "qr-image": "^3.2.0"
+  },
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-exec": "^3.0.0"
+  }
+}

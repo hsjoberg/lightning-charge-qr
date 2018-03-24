@@ -1,0 +1,92 @@
+body {
+  background-color: #f3f3f3;
+}
+
+.main-container {
+  @include media-breakpoint-down(xs) {
+    @include make-container-max-widths();
+  }
+
+  @include media-breakpoint-up(sm) {
+    @include make-container();
+  }
+}
+
+.main-row {
+  @include make-row();
+  @extend .align-items-center, .justify-content-center;
+
+  @include media-breakpoint-down(xs) {
+    margin: 5px;
+  }
+
+  @include media-breakpoint-up(md) {
+    min-height: 70vh;
+  }
+}
+
+.main-col {
+  @include media-breakpoint-up(xs) {
+    @include make-col(12);
+  }
+
+  @include media-breakpoint-up(sm) {
+    @include make-col(10);
+  }
+
+  @include media-breakpoint-up(lg) {
+    @include make-col(6);
+  }
+
+  @include media-breakpoint-up(xl) {
+    @include make-col(4);
+  }
+}
+
+.main-card {
+  @extend .card;
+  @include make-col-ready();
+
+  padding-right: 0;
+  padding-left: 0;
+  margin-bottom: 1rem;
+}
+
+.invoice {
+  &__img {
+    display: block;
+    max-width: 100%;
+    margin: auto;
+  }
+
+  &__qr {
+    display: block;
+    margin: auto;
+  }
+
+  &__payment-request {
+    font-size: $font-size-sm;
+    text-align: center;
+    word-wrap: break-word;
+
+    > a {
+      color: #333;
+    }
+  }
+
+  &__id {
+    font-size: $font-size-sm;
+    text-align: center;
+  }
+}
+
+.peer-info {
+  font-size: $small-font-size;
+  font-weight: 500;
+  text-align: center;
+  word-wrap: break-word;
+
+  @include media-breakpoint-down(xs) {
+    display: none;
+  }
+}

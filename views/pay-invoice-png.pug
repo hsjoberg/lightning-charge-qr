@@ -1,0 +1,38 @@
+doctype html
+html
+  head
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+    link(href="/bootstrap/css/bootstrap.min.css" rel="stylesheet")
+  body
+    div(class="main-container")
+      div(class="main-row")
+        div(class="main-col")
+          div(class="main-card")
+            div(class="card-body")
+              div(id="main-card-content")
+                if status == "unpaid"
+                  h2(class="text-center") Lightning Network!
+                  p(class="text-center") Hello #{uuid}.<br />Pay this Lightning invoice on testnet.
+                  div(class="invoice")
+                    a(href=`lightning:${paymentReq}`): img(class="invoice__img" src=`data:image/png;base64, ${Buffer.from(paymentReqPng, "binary").toString("base64")}`)
+                    p(class="invoice__payment-request"): a(href=`lightning:${paymentReq}`)= paymentReq
+                    div(class="text-center mb-3")
+                      button(class="btn btn-success check-payment-button") Check payment
+                    p(class="invoice__id ")= "Invoice " + invoiceId
+                else
+                  p(class="text-center")
+                    div(class="row" style="margin-bottom: 1rem")
+                      div(class="col")
+                        p: strong Paid!
+                      div(class="col")
+                        button(type="button" class="btn btn-warning btn-sm reset-session-button" style="margin: 0 0.1rem auto auto; display: block;") Reset session
+                    div(class='embed-container')
+                      - var video = Math.floor(Math.random() * Math.floor(2))
+                      case video
+                        when 0
+                          iframe(src='https://www.youtube.com/embed/vhyAREaWfyU?rel=0&amp;start=29&amp;autoplay=1' frameborder='0' allow="autoplay; encrypted-media" allowfullscreen)
+                        when 1
+                          iframe(src='https://www.youtube.com/embed/EY8rq1AyCPY?rel=0&amp;autoplay=1' frameborder='0' allow="autoplay; encrypted-media" allowfullscreen)
+          p(class="peer-info")= "0269903c5972c7e253f502010b04217967828368821ca7cf23c279e00a9bc19cfd" + "@" + "213.113.58.198:9736"
+
+    script(src="/public/main.js")
