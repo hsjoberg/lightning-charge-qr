@@ -77,30 +77,3 @@ wss.on('connection', (ws, req) => {
 server.listen(3000, '0.0.0.0', () => {
   console.log('Listening on %d', server.address().port);
 });
-
-
-
-app.get("/inv", async (req, res) => {
-  try {
-    const inv = await charge.invoice({ msatoshi: 50, metadata: { customer_id: 123, product_id: 456 } })
-    console.log(`invoice ${ inv.id } created with rhash=${ inv.rhash }, payreq=${ inv.payreq }`)
-    res.send("payreq: " + inv.payreq);
-    res.send("<br>\ninvoice id: " + inv.id);
-
-    let paid;
-    do {
-      paid = await charge.wait(inv.id, /* timeout: */ 600 /* seconds */)
-
-      if (paid)
-        console.log(`invoice ${ paid.id } of ${ paid.msatoshi } paid, updated invoice:`, paid)
-      else if (paid === false)
-        console.log('invoice expired and can no longer be paid')
-      else if (paid === null)
-        console.log('timeout reached without payment, invoice is still payable')
-    } while (paid === null);
-  }
-  catch(e) {
-    console.log("exception");
-    console.log(e);
-  }
-});

@@ -1,9 +1,6 @@
 const qr = require('../modules/qr');
 const charge = require("lightning-charge-client")("http://localhost:9112", "test");
 
-
- qr.generatePNG2("test");
-
 module.exports = (userWebSocketConnections) => {
   const router = require("express").Router();
 
